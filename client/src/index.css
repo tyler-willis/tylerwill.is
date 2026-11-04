@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+/* Dark mode is class-based (.dark on <html>) so the user can toggle it,
+   instead of Tailwind's default of following the OS setting only. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Design tokens. Tailwind v4 turns every --color-* / --font-* here into utilities,
+  e.g. --color-accent → bg-accent, text-accent, border-accent.
+  The values point at CSS variables so light/dark can swap them in one place.
+*/
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-sky: var(--sky);
+  --color-sun: var(--sun);
+  --color-mint: var(--mint);
+
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --bg: #fff8ee; /* warm paper */
+  --surface: #ffffff;
+  --ink: #1d2440; /* deep navy, softer than black */
+  --muted: #5d6480;
+  --line: #1d2440;
+  --accent: #ff6b4a; /* coral */
+  --accent-ink: #ffffff;
+  --sky: #8ecdf7;
+  --sun: #ffd166;
+  --mint: #7ee0b5;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #121628; /* night sky */
+  --surface: #1c2138;
+  --ink: #f4efe6;
+  --muted: #a3a9c4;
+  --line: #f4efe6;
+  --accent: #ff8466;
+  --accent-ink: #121628;
+  --sky: #4f8fc0;
+  --sun: #e8b84a;
+  --mint: #4fb98c;
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-bg text-ink font-sans antialiased transition-colors duration-300;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-display tracking-tight;
+}
+
+/* The signature look: chunky outline + offset "sticker" shadow that lifts on hover. */
+@utility card {
+  @apply border-line bg-surface rounded-2xl border-2 shadow-[5px_5px_0_0_var(--line)];
+}
+
+@utility card-hover {
+  @apply transition-[transform,box-shadow] duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_0_var(--line)];
+}
+
+@utility btn {
+  @apply border-line inline-flex items-center gap-2 rounded-full border-2 px-5 py-2.5 font-semibold shadow-[3px_3px_0_0_var(--line)] transition-[transform,box-shadow] duration-150 hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_0_var(--line)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none disabled:opacity-60;
+}
+
+:focus-visible {
+  @apply outline-accent outline-3 outline-offset-2;
+}
+
+/* Gives us the `animate-scroll-up` utility (About page facts marquee) */
+@theme {
+  --animate-scroll-up: scroll-up 24s linear infinite;
+
+  @keyframes scroll-up {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+}
+
+/* Easter egg — see Navbar */
+@keyframes barrel-roll {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.barrel-roll {
+  animation: barrel-roll 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barrel-roll {
+    animation: none;
+  }
+}
