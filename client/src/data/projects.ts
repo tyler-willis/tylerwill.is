@@ -22,7 +22,7 @@ export const projects: Project[] = [
       "The site you're looking at. React 19, TypeScript, Tailwind v4 and Motion, built to grow into a full MERN app with its own API and admin dashboard.",
     tags: ['React', 'TypeScript', 'Tailwind', 'Motion', 'Vite'],
     status: 'in-progress',
-    repoUrl: undefined, // TODO: GitHub repo link once pushed
+    repoUrl: 'https://github.com/tyler-willis/tylerwill.is',
     color: 'accent',
   },
   {
