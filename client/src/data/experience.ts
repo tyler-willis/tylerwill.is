@@ -17,7 +17,7 @@ export const jobs: Job[] = [
     end: 'Present',
     highlights: [
       'Build and maintain React + TypeScript applications for California state agencies, integrating REST APIs and cloud services across AWS and Azure.',
-      'Designed a Playwright end-to-end regression framework for the DHCS PATH program that caught dozens of defects before they reached production.',
+      "Helped design and build California's DHCS PATH website: built many of its React components, shipped regular content updates, and designed a Playwright regression framework that caught dozens of defects before they reached production.",
       'Led Independent Verification & Validation (IV&V) efforts across multiple enterprise projects, including serving as Project Owner and Scrum Master for the CA Fi$Cal readiness assessment.',
       "Contributed to California's COVID-19 vaccine distribution system, and supported modernization work using Microsoft Power Platform.",
     ],

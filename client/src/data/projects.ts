@@ -27,20 +27,40 @@ export const projects: Project[] = [
   },
   {
     slug: 'dhcs-path',
-    title: 'CA DHCS PATH: Regression Testing',
+    title: 'CA DHCS PATH',
     blurb:
-      'Designed a Playwright regression testing framework for a California Department of Health Care Services program. It caught dozens of defects across multiple production deployments.',
-    tags: ['Playwright', 'E2E Testing', 'QA Automation'],
+      "A large, long-running site for California's PATH initiative under the Department of Health Care Services. I helped design it and built many of its front-end components. I also designed the Playwright regression framework that guarded every release, catching dozens of defects across multiple production deployments.",
+    tags: ['React', 'React Bootstrap', 'Playwright', 'E2E Testing'],
     status: 'professional',
+    liveUrl: 'https://www.ca-path.com/',
     color: 'mint',
+  },
+  {
+    slug: 'fiscal',
+    title: 'FI$Cal IV&V Readiness Assessment',
+    blurb:
+      "Led an IV&V readiness assessment for FI$Cal, California's statewide financial management system, as both Project Owner and Scrum Master. The assessment identified dozens of critical risks.",
+    tags: ['IV&V', 'Risk Assessment', 'Scrum', 'Leadership'],
+    status: 'professional',
+    color: 'sun',
+  },
+  {
+    slug: 'power-bi',
+    title: 'Power BI Dashboards',
+    blurb:
+      'Designed over a dozen interactive Power BI dashboards and reports for various state agencies that turn complex program data into clear visuals.',
+    tags: ['Power BI', 'Data Visualization', 'Power Platform'],
+    status: 'professional',
+    color: 'sky',
   },
   {
     slug: 'ne-sensor',
     title: 'NE Sensor',
     blurb:
-      'A web platform for managing scientific sensor data for the U.S. Department of Energy, focused on usability, data visualization, and reliable access to complex information.',
+      'A web platform for managing nuclear energy sensor data for the U.S. Department of Energy, focused on usability, data visualization, and reliable access to complex information.',
     tags: ['Drupal', 'JavaScript', 'Sass'],
     status: 'professional',
+    liveUrl: 'https://nes.energy.gov/',
     color: 'sky',
   },
   {
@@ -48,7 +68,7 @@ export const projects: Project[] = [
     title: 'CA Vaccine Rollout',
     blurb:
       'Contributed to the system California used to distribute COVID-19 vaccines across the state.',
-    tags: ['Public Sector', 'Healthcare'],
+    tags: ['Public Sector', 'Healthcare', 'IV&V'],
     status: 'professional',
     color: 'sun',
   },

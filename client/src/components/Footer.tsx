@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="border-line mt-24 border-t-2">
       <div className="text-muted mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm sm:flex-row sm:px-6">
         <p>
-          © {year} {site.name}. Favorite Emoji → 🙂‍↕️
+          © {year} {site.name} • React • TypeScript • Tailwind
         </p>
         <ul className="flex gap-4">
           {site.socials.map((s) => (

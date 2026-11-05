@@ -10,7 +10,7 @@ interface PageProps {
 // Every page wraps itself in this: sets the tab title and animates in/out.
 export function Page({ title, children }: PageProps) {
   useEffect(() => {
-    document.title = title ? `${title} · ${site.name}` : `${site.name} — Developer`
+    document.title = title ? `${title} · ${site.name}` : `${site.name} — Software Engineer`
   }, [title])
 
   return (
