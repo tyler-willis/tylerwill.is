@@ -4,7 +4,35 @@ import { Page, PageHeading } from '../components/Page'
 import { PaperPlane } from '../components/PaperPlane'
 import { site } from '../data/site'
 
-type Status = 'idle' | 'sending' | 'sent' | 'error'
+// 'mailto' = we handed off to the visitor's email app, which may not exist.
+type Status = 'idle' | 'sending' | 'sent' | 'error' | 'mailto'
+
+// Shown whenever we can't confirm the message went out, so nobody hits a dead end.
+function EmailFallback({ intro }: { intro: string }) {
+  const [copied, setCopied] = useState(false)
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(site.email)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard can be blocked; the address is still visible to copy by hand.
+    }
+  }
+
+  return (
+    <div role="status" className="border-accent bg-accent/10 rounded-xl border-2 p-4">
+      <p className="font-medium">{intro}</p>
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <code className="font-semibold break-all">{site.email}</code>
+        <button type="button" onClick={copy} className="btn bg-surface px-3 py-1 text-sm">
+          {copied ? 'Copied ✓' : 'Copy'}
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
@@ -21,6 +49,8 @@ export function Contact() {
         `${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`,
       )
       window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`
+      // We can't detect whether an email app actually opened, so always offer the address.
+      setStatus('mailto')
       return
     }
 
@@ -133,9 +163,10 @@ export function Contact() {
                   />
                 </label>
                 {status === 'error' && (
-                  <p role="alert" className="text-accent font-medium">
-                    Hmm, that didn't send. Try again, or email me directly.
-                  </p>
+                  <EmailFallback intro="Hmm, that didn't send. Try again, or email me directly:" />
+                )}
+                {status === 'mailto' && (
+                  <EmailFallback intro="Your email app should open with the message ready. If nothing happened, you can email me directly:" />
                 )}
                 <button
                   type="submit"
